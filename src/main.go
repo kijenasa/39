@@ -19,7 +19,7 @@ func main() {
 }
 
 func registerCommands(discord *discordgo.Session) {
-	_, err := discord.ApplicationCommandBulkOverwrite(1, 1, []*discordgo.ApplicationCommand{
+	_, err := discord.ApplicationCommandBulkOverwrite(discord.State.User.ID, "", []*discordgo.ApplicationCommand{
 		{
 			Name:        "play",
 			Description: "Plays a song",
@@ -49,12 +49,14 @@ func connectToDiscord() *discordgo.Session {
 		log.Fatal("Error creating Discord session:", err)
 	}
 
-	discord.Identify.Intents = discordgo.MakeIntent(discordgo.IntentsGuildVoiceStates)
+	discord.Identify.Intents = discordgo.MakeIntent(discordgo.IntentsAllWithoutPrivileged)
 
 	err = discord.Open()
 	if err != nil {
 		log.Fatal("Error opening connection to Discord", err)
 	}
+
+	registerCommands(discord)
 
 	return discord
 }
