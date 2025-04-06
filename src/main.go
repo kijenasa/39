@@ -23,6 +23,14 @@ func registerCommands(discord *discordgo.Session) {
 		{
 			Name:        "play",
 			Description: "Plays a song",
+			Options: []*discordgo.ApplicationCommandOption{
+				{
+					Type:        discordgo.ApplicationCommandOptionString,
+					Name:        "song",
+					Description: "Song title or URL",
+					Required:    true,
+				},
+			},
 		},
 		{
 			Name:        "clear",
