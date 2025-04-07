@@ -1,10 +1,9 @@
 package main
 
-import (
-	"fmt"
-	// "github.com/rylio/ytdl"
-)
+//import (
+//	 "github.com/rylio/ytdl"
+//)
 
-func play(title string) {
-	fmt.Print("hiiiiii ")
+func play(title string) (bool, string) {
+	return true, "song name"
 }
